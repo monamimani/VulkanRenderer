@@ -1,0 +1,11 @@
+{
+  "name": "shader",
+  "vertexShader": "Path to vertex shader",
+  "vertexMain": "main",
+  "fragmentShader": "Path to vertex shader",
+  "fragmentMain": "main",
+  "albedo": "Path to Albedo Texture",
+  "normal": "Path to normal Texture",
+  "depthTest": true,
+  "alphahTest": false,
+}

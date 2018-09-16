@@ -1,0 +1,11 @@
+prefix=D:/_Dev/Libraries/vcpkg/packages/assimp_x64-windows/debug
+exec_prefix=D:/_Dev/Libraries/vcpkg/packages/assimp_x64-windows/debug/
+libdir=D:/_Dev/Libraries/vcpkg/packages/assimp_x64-windows/debug/lib
+includedir=D:/_Dev/Libraries/vcpkg/packages/assimp_x64-windows/debug/include
+
+Name: Assimp
+Description: Import various well-known 3D model formats in an uniform manner.
+Version: 4.1.0
+Libs: -L${libdir} -lassimp
+Libs.private:  -lz
+Cflags: -I${includedir}

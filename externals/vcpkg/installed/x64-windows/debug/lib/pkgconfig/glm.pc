@@ -1,0 +1,7 @@
+prefix=D:/_Dev/Libraries/vcpkg/packages/glm_x64-windows/debug
+includedir=${prefix}/include
+
+Name: GLM
+Description: OpenGL Mathematics
+Version: 0.9.9
+Cflags: -I${includedir}

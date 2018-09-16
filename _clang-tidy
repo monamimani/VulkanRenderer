@@ -1,0 +1,6 @@
+Checks: 'modernize-*,performance-*,bugprone-*,clang-analyzer-*,readability-function-size'  
+WarningsAsErrors: ''
+HeaderFilterRegex: '.*'
+CheckOptions:
+  - key:    readability-function-size.StatementThreshold
+    value:  '450'
