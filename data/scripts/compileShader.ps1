@@ -3,7 +3,8 @@ param (
     [Parameter(Mandatory=$true)][string]$shaderDir = ""
  )
 
-$VulkanSDKBin = "$Env:VULKAN_SDK\bin" 
+#$VulkanSDKBin = "$Env:VULKAN_SDK\bin" 
+$VulkanSDKBin = "..\..\externals\VulkanSDK\bin" 
 
 write-output "Compiling shaders in: $shaderDir using binaries from $VulkanSDKBin. `n"
 

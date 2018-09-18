@@ -112,8 +112,8 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)_Bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)_tmp\$(Platform)\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(VULKAN_SDK)\Include;$(SolutionDir)externals\vcpkg\installed\x64-windows\include;$(SolutionDir)externals\stb;$(IncludePath)</IncludePath>
-    <LibraryPath>$(VULKAN_SDK)\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)externals\VulkanSDK\Include;$(SolutionDir)externals\vcpkg\installed\x64-windows\include;$(SolutionDir)externals\stb;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)externals\VulkanSDK\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -122,8 +122,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)_Bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)_tmp\$(Platform)\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(VULKAN_SDK)\Include;$(SolutionDir)externals\vcpkg\installed\x64-windows\include;$(SolutionDir)externals\stb;$(IncludePath)</IncludePath>
-    <LibraryPath>$(VULKAN_SDK)\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)externals\VulkanSDK\Include;$(SolutionDir)externals\vcpkg\installed\x64-windows\include;$(SolutionDir)externals\stb;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)externals\VulkanSDK\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
