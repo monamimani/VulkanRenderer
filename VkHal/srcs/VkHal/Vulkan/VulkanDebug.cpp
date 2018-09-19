@@ -37,7 +37,7 @@ VkDebugReport::VkDebugReport(const vk::Instance& instance)
   PFN_vkCreateDebugReportCallbackEXT func = (PFN_vkCreateDebugReportCallbackEXT)vkGetInstanceProcAddr(m_instance, "vkCreateDebugReportCallbackEXT");
 
   Check(func != nullptr, "Could not find vkCreateDebugReportCallbackEXT");
-  vkCheck((func(instance, &(VkDebugReportCallbackCreateInfoEXT)callbackInfo, nullptr, reinterpret_cast<VkDebugReportCallbackEXT*>(&m_debugReportCallback))));
+  vkCheck((func(instance, (VkDebugReportCallbackCreateInfoEXT*)&callbackInfo, nullptr, reinterpret_cast<VkDebugReportCallbackEXT*>(&m_debugReportCallback))));
   // m_debugReportCallback = instance.createDebugReportCallbackEXTUnique(callbackInfo, nullptr, dispatchLoaderDynamicInstance);
 }
 
@@ -117,7 +117,7 @@ DebugUtils::DebugUtils(const vk::Instance& instance)
 
   PFN_vkCreateDebugUtilsMessengerEXT func = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(m_instance, "vkCreateDebugUtilsMessengerEXT");
   Check(func != nullptr, "Could not find vkCreateDebugUtilsMessengerEXT");
-  vkCheck(static_cast<vk::Result>(func(instance, &(VkDebugUtilsMessengerCreateInfoEXT)debugUtilsInfo, nullptr, reinterpret_cast<VkDebugUtilsMessengerEXT*>(&m_debugUtilsMessenger))));
+  vkCheck(static_cast<vk::Result>(func(instance, (VkDebugUtilsMessengerCreateInfoEXT*)&debugUtilsInfo, nullptr, reinterpret_cast<VkDebugUtilsMessengerEXT*>(&m_debugUtilsMessenger))));
   //m_debugUtilsMessenger = instance.createDebugUtilsMessengerEXT(debugUtilsInfo);
 
   m_setObjectNameFct = (PFN_vkSetDebugUtilsObjectNameEXT)vkGetInstanceProcAddr(m_instance, "vkSetDebugUtilsObjectNameEXT");

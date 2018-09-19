@@ -421,14 +421,14 @@ void VkRenderer::generateMipmaps(vk::CommandBuffer& cmdBuffer, vk::Queue queue, 
     cmdBuffer.pipelineBarrier(vk::PipelineStageFlagBits::eTransfer, vk::PipelineStageFlagBits::eTransfer, vk::DependencyFlags{}, nullptr, nullptr, barrier);
 
     vk::ImageBlit imgBlit{};
-    imgBlit.srcOffsets[0] = {0, 0, 0};
-    imgBlit.srcOffsets[1] = {mipWidth, mipHeight, 1};
+    imgBlit.srcOffsets[0] = vk::Offset3D{0, 0, 0};
+    imgBlit.srcOffsets[1] = vk::Offset3D{mipWidth, mipHeight, 1};
     imgBlit.srcSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
     imgBlit.srcSubresource.mipLevel = i - 1;
     imgBlit.srcSubresource.baseArrayLayer = 0;
     imgBlit.srcSubresource.layerCount = 1;
-    imgBlit.dstOffsets[0] = {0, 0, 0};
-    imgBlit.dstOffsets[1] = {mipWidth > 1 ? mipWidth / 2 : 1, mipHeight > 1 ? mipHeight / 2 : 1, 1};
+    imgBlit.dstOffsets[0] = vk::Offset3D{0, 0, 0};
+    imgBlit.dstOffsets[1] = vk::Offset3D{mipWidth > 1 ? mipWidth / 2 : 1, mipHeight > 1 ? mipHeight / 2 : 1, 1};
     imgBlit.dstSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
     imgBlit.dstSubresource.mipLevel = i;
     imgBlit.dstSubresource.baseArrayLayer = 0;
@@ -834,8 +834,8 @@ void VkRenderer::copyBufferToImage(vk::Buffer& buffer, vk::Image image, uint32_t
   copyRegion.imageSubresource.baseArrayLayer = 0;
   copyRegion.imageSubresource.layerCount = 1;
 
-  copyRegion.imageOffset = {0, 0, 0};
-  copyRegion.imageExtent = {width, height, 1};
+  copyRegion.imageOffset = vk::Offset3D{0, 0, 0};
+  copyRegion.imageExtent = vk::Extent3D{width, height, 1};
 
   transferCmdBuffer->copyBufferToImage(buffer, image, vk::ImageLayout::eTransferDstOptimal, copyRegion);
   transferCmdBuffer->end();
@@ -966,12 +966,12 @@ void VkRenderer::recordGfxCommandBuffer(const VulkanCurrentFrameResources& curre
 
   std::array<vk::ClearValue, 2> clearColor{};
   clearColor[0].color = vk::ClearColorValue(std::array<float, 4>{0.0f, 0.0f, 0.0f, 1.0f});
-  clearColor[1].depthStencil = {1.0f, 0};
+  clearColor[1].depthStencil = vk::ClearDepthStencilValue{1.0f, 0};
 
   vk::RenderPassBeginInfo renderPassInfo{};
   renderPassInfo.renderPass = *m_renderPass;
   renderPassInfo.framebuffer = m_swapchainFramebuffers[currentFrameResources.m_swapchainImageIndex].get();
-  renderPassInfo.renderArea.offset = {0, 0};
+  renderPassInfo.renderArea.offset = vk::Offset2D{0, 0};
   renderPassInfo.renderArea.extent = currentFrameResources.m_swapchain->getSwapchainExtent();
   renderPassInfo.clearValueCount = (uint32_t)clearColor.size();
   renderPassInfo.pClearValues = clearColor.data();
@@ -1006,7 +1006,6 @@ void VkRenderer::render()
 
   m_device->resetFences(currentFrameResources.m_frameResources->m_frameFence.get());
 
-  //uint32_t imageIndex{};
   try
   {
     m_device->acquireNextImageKHR(m_vulkanSwapchain->getSwapchain(), std::numeric_limits<uint64_t>::max(), currentFrameResources.m_frameResources->m_imageAcquiredSemaphores.get(), nullptr, &currentFrameResources.m_swapchainImageIndex);

@@ -103,7 +103,7 @@ void DevGuiRenderer::recordCommandBuffers(const VulkanCurrentFrameResources& cur
   vk::RenderPassBeginInfo renderPassInfo{};
   renderPassInfo.renderPass = *m_renderPass;
   renderPassInfo.framebuffer = m_framebuffers[currentFrameResources.m_swapchainImageIndex].get();
-  renderPassInfo.renderArea.offset = {0, 0};
+  renderPassInfo.renderArea.offset = vk::Offset2D{0, 0};
   renderPassInfo.renderArea.extent = currentFrameResources.m_swapchain->getSwapchainExtent();
   renderPassInfo.clearValueCount = (uint32_t)clearColor.size();
   renderPassInfo.pClearValues = clearColor.data();
